@@ -1,0 +1,19 @@
+    <form [formGroup]="robotForm" (ngSubmit)="onSubmitForm()">
+      <label>Robot to add :</label>
+      <input id="RobotName" formControlName="RobotName">      
+      <button nbButton type="submit" [disabled]="robotForm.invalid">Ajouter</button>
+    </form>
+    <br>
+    <br>
+    
+    <nb-card *ngFor="let item of items">      
+      <nb-card-body>
+        <tr>
+          <td>{{item.RobotName}}</td>
+          <td style="width: 30%;"><button (click)="onDelete(item.RobotID)">Supprimer</button></td> 
+        </tr>        
+      </nb-card-body>    
+    </nb-card>
+
+  
+
