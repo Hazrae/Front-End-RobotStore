@@ -1,3 +1,5 @@
 export class RobotResponse {
-      Status ; number;
+     RobotName: string;
+     RobotID?: number;    
+     Status : number;
   }

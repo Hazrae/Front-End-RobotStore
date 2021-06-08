@@ -23,6 +23,7 @@ export class ListingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //resolver plus opti
     this.loadItems();
     this.initForm();
   }
@@ -43,12 +44,12 @@ export class ListingComponent implements OnInit {
       if (x.Status == 1)
       {console.log('le robot a été supprimé')}
       else
-      {console.log('erreur')};
+      {console.log('erreur de suppression')};
 
       this.loadItems();
     });
   }
-
+  //initialisation formulaire d'ajout
   initForm()
   {
     this.robotForm = this.forBuilder.group(
@@ -66,13 +67,16 @@ export class ListingComponent implements OnInit {
     );
     this.robotServ.add(newRobot).subscribe(
       x=>{
+        //console log ok ou non
+        //A changer par un toaster
         if (x.Status == 1)
-      {console.log('le robot a été ajouté')}      
+      {console.log('le robot a été ajouté');
+      // Ajout à la liste de robots
+      this.items.push(new Robot(x.RobotName,x.RobotID));
+      }    
       else
-      {console.log('erreur')};
-
-      //this.loadItems();
-      this.items.push(new Robot('tata',19));
+      {console.log('erreur d\'ajout')};     
+      
       }
     );
       
