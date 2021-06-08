@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RobotService } from 'src/app/services/robot.service';
-import { RobotsComponent } from '../robots.component';
 import { Robot } from 'src/app/models/robot.model';
 import { NbToastrService } from '@nebular/theme';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -21,15 +21,17 @@ export class ListingComponent implements OnInit {
   constructor(
     private robotServ: RobotService,
     private forBuilder : FormBuilder,
+    private router : ActivatedRoute,
     private toast : NbToastrService
   ) { }
 
   ngOnInit(): void {
-    //resolver plus opti
-    this.loadItems();
+    //Resolver to get the Robots list 
+    this.items = this.router.snapshot.data['robots'];
     this.initForm();
   }
 
+  // Reload Robots list
   loadItems()
   {
     this.robotServ.getAll().subscribe(
@@ -37,12 +39,13 @@ export class ListingComponent implements OnInit {
     )
   }
 
+  //Delete Robot in DB
   onDelete(id : number)
   {
     console.log(id);
     this.robotServ.delete(id).subscribe(
       x=> {       
-      //test statut de la suppression
+      //Toaster depending delete status
       if (x.Status == 1)
       {this.toast.success('Robot deleted');}
       else
@@ -51,7 +54,6 @@ export class ListingComponent implements OnInit {
       this.loadItems();
     });
   }
-  //initialisation formulaire d'ajout
   initForm()
   {
     this.robotForm = this.forBuilder.group(
@@ -61,6 +63,9 @@ export class ListingComponent implements OnInit {
     )
   }
 
+  //New Robot through form 
+  //Add robot in DB
+  //Append to the list
   onSubmitForm()
   {    
     const formValue = this.robotForm.value;
@@ -69,10 +74,9 @@ export class ListingComponent implements OnInit {
     );
     this.robotServ.add(newRobot).subscribe(
       x=>{
-        // test statut de l'ajout
+        // Toaster depending add status
         if (x.Status == 1) 
-        {           
-          // Ajout à la liste de robots
+        {        
           this.items.push(new Robot(x.RobotName,x.RobotID));
           this.toast.success('Robot added');
         }    

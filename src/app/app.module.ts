@@ -14,6 +14,7 @@ import { ListingComponent } from './components/robots/listing/listing.component'
 import { RobotService } from './services/robot.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FourOFourComponent } from './components/four-o-four/four-o-four.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     RobotsComponent,
     ListingComponent,
+    FourOFourComponent,
 
       
   ],

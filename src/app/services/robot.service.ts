@@ -13,14 +13,15 @@ export class RobotService {
 
   constructor(private _client : HttpClient) { }
 
+  //GET robots list
   getAll():Observable<Robot[]>{
     return this._client.get<Robot[]>(this.URI);
   }
-
+  //DELETE robot with id - return status
   delete(id : number):Observable<RobotResponse>{ 
     return this._client.delete<RobotResponse>(this.URI+'/'+id);
   }
-
+  //POST new robot - return robot with ID and status
   add(newRobot: Robot):Observable<RobotResponse>{
     return this._client.post<RobotResponse>(this.URI, newRobot);
   }
