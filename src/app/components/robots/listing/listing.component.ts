@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RobotService } from 'src/app/services/robot.service';
 import { RobotsComponent } from '../robots.component';
 import { Robot } from 'src/app/models/robot.model';
+import { NbToastrService } from '@nebular/theme';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class ListingComponent implements OnInit {
 
   constructor(
     private robotServ: RobotService,
-    private forBuilder : FormBuilder
+    private forBuilder : FormBuilder,
+    private toast : NbToastrService
   ) { }
 
   ngOnInit(): void {
@@ -39,12 +41,12 @@ export class ListingComponent implements OnInit {
   {
     console.log(id);
     this.robotServ.delete(id).subscribe(
-      x=> {      
-      //A changer par un toaster
+      x=> {       
+      //test statut de la suppression
       if (x.Status == 1)
-      {console.log('le robot a été supprimé')}
+      {this.toast.success('Robot deleted');}
       else
-      {console.log('erreur de suppression')};
+      {this.toast.danger('Delete Error');   };
 
       this.loadItems();
     });
@@ -67,18 +69,18 @@ export class ListingComponent implements OnInit {
     );
     this.robotServ.add(newRobot).subscribe(
       x=>{
-        //console log ok ou non
-        //A changer par un toaster
-        if (x.Status == 1)
-      {console.log('le robot a été ajouté');
-      // Ajout à la liste de robots
-      this.items.push(new Robot(x.RobotName,x.RobotID));
-      }    
-      else
-      {console.log('erreur d\'ajout')};     
-      
-      }
-    );
+        // test statut de l'ajout
+        if (x.Status == 1) 
+        {           
+          // Ajout à la liste de robots
+          this.items.push(new Robot(x.RobotName,x.RobotID));
+          this.toast.success('Robot added');
+        }    
+        else
+        {
+          this.toast.danger('Add Error');          
+        }
+      });
       
   }
 

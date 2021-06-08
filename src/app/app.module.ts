@@ -4,7 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbCardModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbMenuModule, NbCardModule, NbToastrModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NavComponent } from './components/nav/nav.component';
 
@@ -39,7 +39,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     NbCardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NbToastrModule.forRoot()
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   providers: [RobotService],
