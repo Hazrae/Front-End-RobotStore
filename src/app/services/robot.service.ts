@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Robot} from '../models/robot.model';
 import { Observable } from 'rxjs';
-import { Store } from '../models/store.model';
 import { RobotResponse } from '../models/robotResponse.model';
 
 
@@ -14,8 +13,8 @@ export class RobotService {
 
   constructor(private _client : HttpClient) { }
 
-  getAll():Observable<Store>{
-    return this._client.get<Store>(this.URI);
+  getAll():Observable<Robot[]>{
+    return this._client.get<Robot[]>(this.URI);
   }
 
   delete(id : number):Observable<RobotResponse>{ 

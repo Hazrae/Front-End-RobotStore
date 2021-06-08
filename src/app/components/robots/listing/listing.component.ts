@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from 'src/app/models/store.model';
 import { RobotService } from 'src/app/services/robot.service';
 import { RobotsComponent } from '../robots.component';
 import { Robot } from 'src/app/models/robot.model';
@@ -14,7 +13,7 @@ import { Robot } from 'src/app/models/robot.model';
 })
 export class ListingComponent implements OnInit {
 
-  items : Store;
+  items : Robot[]=[];
 
   robotForm : FormGroup;
 
@@ -72,8 +71,8 @@ export class ListingComponent implements OnInit {
       else
       {console.log('erreur')};
 
-      this.loadItems();
-      //this.items.Store.push(new Robot('tata',19));
+      //this.loadItems();
+      this.items.push(new Robot('tata',19));
       }
     );
       
