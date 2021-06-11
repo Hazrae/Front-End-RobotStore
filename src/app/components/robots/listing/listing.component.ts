@@ -20,7 +20,7 @@ export class ListingComponent implements OnInit {
 
   constructor(
     private robotServ: RobotService,
-    private forBuilder : FormBuilder,
+    private formBuilder : FormBuilder,
     private router : ActivatedRoute,
     private toast : NbToastrService
   ) { }
@@ -56,7 +56,7 @@ export class ListingComponent implements OnInit {
   }
   initForm()
   {
-    this.robotForm = this.forBuilder.group(
+    this.robotForm = this.formBuilder.group(
       {
         RobotName:['', Validators.required]
       }

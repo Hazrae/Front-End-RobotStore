@@ -1,0 +1,16 @@
+<form [formGroup]="findForm" (ngSubmit)="onSubmitForm()">
+      <label>Robot to find :</label>
+      &nbsp;
+      <input type="number" id="RobotID" formControlName="RobotID">      
+      &nbsp;
+      <button nbButton type="submit" [disabled]="findForm.invalid">Ajouter</button>
+</form>
+    <br>
+    <br>
+
+<!--only if robot found-->
+<nb-card *ngIf="item">
+      <nb-card-body>      
+            <div>{{item.RobotName}}</div> 
+      </nb-card-body>  
+</nb-card>

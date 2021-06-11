@@ -17,6 +17,10 @@ export class RobotService {
   getAll():Observable<Robot[]>{
     return this._client.get<Robot[]>(this.URI);
   }
+  //GET robot by ID
+  getOne(id:number):Observable<Robot>{
+    return this._client.get<Robot>(this.URI+'/'+id)
+  }
   //DELETE robot with id - return status
   delete(id : number):Observable<RobotResponse>{ 
     return this._client.delete<RobotResponse>(this.URI+'/'+id);
