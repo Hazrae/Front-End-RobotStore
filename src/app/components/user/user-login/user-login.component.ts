@@ -24,7 +24,7 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.isAuth = this.userServ.isAuth;
+    this.isAuth = this.userServ.getStatus();
   }
 
   initForm(){
@@ -41,6 +41,10 @@ export class UserLoginComponent implements OnInit {
     const userName = formValue['Username'];
     const password = formValue['Password'];
     this.userServ.SignIn(new SigninUser(userName, password));
+  }
+
+  onLogout(){
+    this.userServ.SignOut();
   }
 
 }

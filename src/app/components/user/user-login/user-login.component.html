@@ -1,5 +1,5 @@
 
-<div *ngif="!isAuth">
+<div *ngIf="!isAuth">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
             <label>Username : </label>
             &nbsp;
@@ -14,4 +14,4 @@
             <button nbButton type="submit" [disabled]="loginForm.invalid">Login</button>     
       </form>
 </div>
-<div *ngif="isAuth"><button>Logout</button></div>
+<p *ngIf="isAuth"><button nbButton (click)="onLogout()">Logout</button></p>

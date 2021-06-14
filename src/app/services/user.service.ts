@@ -39,4 +39,9 @@ export class UserService {
     this.loggedUser = null;
     this.isAuth = false;
   }  
+
+  getStatus() : boolean
+  {
+    return this.isAuth;
+  }
 }

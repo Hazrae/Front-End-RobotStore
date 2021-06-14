@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FourOFourComponent } from './components/four-o-four/four-o-four.component';
 import { FindComponent } from './components/robots/find/find.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -28,9 +29,7 @@ import { UserLoginComponent } from './components/user/user-login/user-login.comp
     ListingComponent,
     FourOFourComponent,
     FindComponent,
-    UserLoginComponent,
-
-      
+    UserLoginComponent,      
   ],
   imports: [
     BrowserModule,
@@ -46,7 +45,8 @@ import { UserLoginComponent } from './components/user/user-login/user-login.comp
     NbCardModule,
     FormsModule,
     ReactiveFormsModule,
-    NbToastrModule.forRoot()
+    NbToastrModule.forRoot(),
+    CommonModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   providers: [RobotService],
