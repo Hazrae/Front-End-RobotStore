@@ -14,6 +14,7 @@ export class UserLoginComponent implements OnInit {
 
   public loginForm : FormGroup;
   public user : SigninUser;
+  public isAuth : boolean = false;
 
   constructor(
     private formBuilder : FormBuilder,
@@ -23,6 +24,7 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.isAuth = this.userServ.isAuth;
   }
 
   initForm(){
